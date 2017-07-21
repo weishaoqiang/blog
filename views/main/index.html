@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>欢迎来到我的博客!</h1>
+
+  {%if userInfo._id%}
+  <div id="userInfo">
+    <div>用户信息</div>
+    {%if userInfo.isAdmin%}
+    <div>{{userInfo.username}}</div>
+    <div>
+      <span>你好，管理员</span>
+      <a href="/admin">进入后台管理系统</a>
+    </div>
+    {%else%}
+    <div>欢迎来到我的博客！</div>
+    {%endif%}
+    <div><a href="javascript:;" id="logout">退出</a></div>
+  </div>
+  {%else%}
+  <form action="" id="loginBox">
+    <h3>登录</h3>
+    <span>用户名：</span><input type="text" name="username"/><br/>
+    <span>密&nbsp;码：</span><input type="password" name="password"/><br/>
+  </form>
+  <form action="" id="registerBox">
+    <h3>注册</h3>
+    <span>用户名：</span><input type="text" name="username"/><br/>
+    <span>密码：</span><input type="password" name="password"/><br/>
+    <span>确认密码：</span><input type="password" name="password"/><br/>
+  </form>
+  {%endif%}
+</body>
+</html>

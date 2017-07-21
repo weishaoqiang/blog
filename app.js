@@ -26,7 +26,7 @@ swig.setDefaults({
   cache: false,
 })
 // bodyparser设置
-app.use(bodyParser,urlencoded({extended: false}));
+// app.use(bodyParser,urlencoded({extended: false}));
 
 // 设置cookies
 app.use(function(req, res, next){
@@ -49,9 +49,9 @@ app.use(function(req, res, next){
 /**
  * 根据不同看模块划分功能，设定对应的路由
  */
-app.use('./admin',require('./routers/admin'));
-app.use('./api',require('./routers/api'));
-app.use('./',require('./routers/main'));
+app.use('/admin',require('./routers/admin'));
+// app.use('/api',require('./routers/api'));
+app.use('/',require('./routers/main'));
 
 // app.get('/',function(req, res, next){
 //   // res.send('<h1>欢迎光临我的博客</h1>');
@@ -59,5 +59,14 @@ app.use('./',require('./routers/main'));
 //   res.render('index');
 // })
 
-// 监听http请求
-app.listen(8081);
+// 连接数据库，监听http请求
+mongoose.connect('mongodb://localhost:27017',function(err){
+  if(err){
+    console.log("数据库连接dd失败");
+  }else{
+    console.log("连接数据库成功");
+    // 监听请求
+    app.listen(8081);
+  }
+})
+// app.listen(8081);
